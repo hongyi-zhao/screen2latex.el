@@ -26,6 +26,7 @@
     ;; (progn
     ;;   (call-process "gnome-screenshot" nil nil nil "-a" "-f" filename))
     (progn
+      ;sudo apt install scrot
       (call-process "scrot" nil nil nil "-s" filename))
     )))
 
@@ -39,7 +40,7 @@
   (require 'request) ;; We need request to call the Mathpix API
 
   ;; Load secrets
-  (load-file (expand-file-name "~/.auth.el.gpg"))
+  (load-file (expand-file-name "~/Public/repo/github.com/DvdMgr/screen2latex.el.git/auth.el.gpg"))
 
   ;; Temporary file where to save the screenshot
   (setq filename "/tmp/screentemp.png")
