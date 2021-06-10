@@ -40,8 +40,18 @@
   (require 'request) ;; We need request to call the Mathpix API
 
   ;; Load secrets
-  (load-file (expand-file-name "~/Public/repo/github.com/DvdMgr/screen2latex.el.git/auth.el.gpg"))
+;  (load-file (expand-file-name "~/Public/repo/github.com/hongyi-zhao/screen2latex.el.git/auth.el.gpg"))
+  (load-file (expand-file-name (file-name-directory load-file-name) "/auth.el.gpg"))
+  ; Tried with the following, but still failed.
+;  http://ergoemacs.org/emacs/elisp_relative_path.html
+;  (load-file (concat (file-name-directory (or load-file-name buffer-file-name)) "auth.el.gpg"))
 
+;  https://mail.google.com/mail/u/0/?ogbl#sent/KtbxLwGvXzlLMTCXRpJQRpXVSZBTwDcDmL
+;  (load-file
+;  (concat
+;    (file-name-as-directory (file-name-directory load-file-name))
+;    "auth.el.gpg"))
+    
   ;; Temporary file where to save the screenshot
   (setq filename "/tmp/screentemp.png")
 
