@@ -31,6 +31,18 @@
     )))
 
 
+;https://emacs.stackexchange.com/questions/9554/function-that-returns-parent-directory-absolute-path
+(defun parent-directory (dir)
+  (unless (equal "/" dir)
+    (file-name-directory (directory-file-name dir))))
+
+;https://mail.google.com/mail/u/0?ik=7b73d6af10&view=pt&search=all&permmsgid=msg-a%3Ar-5725215334712845105&simpl=msg-a%3Ar-5725215334712845105
+(setq script-directory1 (file-name-directory load-file-name))
+;  http://ergoemacs.org/emacs/elisp_relative_path.html
+(setq script-directory2 (file-name-directory (or load-file-name buffer-file-name)))
+
+(setq script-parent-directory (parent-directory script-directory1))
+
 
 (defun screen2latex ()
   "Get a screenshot for a mathematical formula and insert the corresponding LaTeX at point."
@@ -40,22 +52,18 @@
   (require 'request) ;; We need request to call the Mathpix API
 
   ;; Load secrets
-;  (load-file (expand-file-name "~/Public/repo/github.com/hongyi-zhao/screen2latex.el.git/auth.el.gpg"))
-
-  (load-file (expand-file-name "auth.el.gpg"
-                             (file-name-directory load-file-name)))
-
-
-  
-  ; Tried with the following, but still failed.
-;  http://ergoemacs.org/emacs/elisp_relative_path.html
-;  (load-file (concat (file-name-directory (or load-file-name buffer-file-name)) "auth.el.gpg"))
-
+   (load-file (expand-file-name "auth.el.gpg" script-directory1))
+;or
+;(load-file (concat script-directory2 "auth.el.gpg"))
+;or
+;   (load-file (expand-file-name "screen2latex.el.auth" script-parent-directory))
+;or    
 ;  https://mail.google.com/mail/u/0/?ogbl#sent/KtbxLwGvXzlLMTCXRpJQRpXVSZBTwDcDmL
 ;  (load-file
 ;  (concat
-;    (file-name-as-directory (file-name-directory load-file-name))
+;    (file-name-as-directory script-directory1)
 ;    "auth.el.gpg"))
+
     
   ;; Temporary file where to save the screenshot
   (setq filename "/tmp/screentemp.png")
