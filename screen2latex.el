@@ -52,11 +52,9 @@
   (require 'request) ;; We need request to call the Mathpix API
 
   ;; Load secrets
-;   (load-file (expand-file-name "auth.el.gpg" script-directory1))
+   (load-file (expand-file-name "auth.el.gpg" script-directory1))
 ;or
 ;(load-file (concat script-directory2 "auth.el.gpg"))
-;or
-   (load-file (expand-file-name "screen2latex.el.auth" script-parent-directory))
 ;or    
 ;  https://mail.google.com/mail/u/0/?ogbl#sent/KtbxLwGvXzlLMTCXRpJQRpXVSZBTwDcDmL
 ;  (load-file
