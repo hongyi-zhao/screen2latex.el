@@ -39,7 +39,9 @@
 ;https://mail.google.com/mail/u/0?ik=7b73d6af10&view=pt&search=all&permmsgid=msg-a%3Ar-5725215334712845105&simpl=msg-a%3Ar-5725215334712845105
 ;https://www.gnu.org/software/emacs/manual/html_node/elisp/File-Name-Expansion.html#File-Name-Expansion
 ;https://emacs.stackexchange.com/questions/29027/print-absolute-path-of-symlink
-(setq script-directory (file-name-directory (file-truename (load-file-name))))
+;https://github.com/raxod502/straight.el/issues/797
+;(setq script-directory (file-name-directory (file-truename (load-file-name))))
+(setq script-directory "~/.emacs.d/straight/repos/screen2latex.el")
 (setq script-parent-directory (parent-directory script-directory))
 
 
