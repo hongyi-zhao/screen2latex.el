@@ -37,11 +37,10 @@
     (file-name-directory (directory-file-name dir))))
 
 ;https://mail.google.com/mail/u/0?ik=7b73d6af10&view=pt&search=all&permmsgid=msg-a%3Ar-5725215334712845105&simpl=msg-a%3Ar-5725215334712845105
-(setq script-directory1 (file-name-directory load-file-name))
-;  http://ergoemacs.org/emacs/elisp_relative_path.html
-(setq script-directory2 (file-name-directory (or load-file-name buffer-file-name)))
-
-(setq script-parent-directory (parent-directory script-directory1))
+;https://www.gnu.org/software/emacs/manual/html_node/elisp/File-Name-Expansion.html#File-Name-Expansion
+;https://emacs.stackexchange.com/questions/29027/print-absolute-path-of-symlink
+(setq script-directory (file-name-directory (file-truename (load-file-name))))
+(setq script-parent-directory (parent-directory script-directory))
 
 
 (defun screen2latex ()
@@ -52,14 +51,12 @@
   (require 'request) ;; We need request to call the Mathpix API
 
   ;; Load secrets
-   (load-file (expand-file-name "auth.el.gpg" script-directory1))
-;or
-;(load-file (concat script-directory2 "auth.el.gpg"))
+   (load-file (expand-file-name "auth.el.gpg" script-directory))
 ;or    
 ;  https://mail.google.com/mail/u/0/?ogbl#sent/KtbxLwGvXzlLMTCXRpJQRpXVSZBTwDcDmL
 ;  (load-file
 ;  (concat
-;    (file-name-as-directory script-directory1)
+;    (file-name-as-directory script-directory)
 ;    "auth.el.gpg"))
 
     
